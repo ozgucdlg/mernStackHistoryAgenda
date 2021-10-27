@@ -16,7 +16,7 @@ const memoSchema = mongoose.Schema({
     },
     image: {
         type: 'string',
-        required: true,
+        
     },
     createdAt: {
         type: Date,
