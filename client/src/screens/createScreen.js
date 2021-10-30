@@ -1,12 +1,16 @@
 import React from 'react'
+import {Container} from 'react-bootstrap'
+import SubmitMemory from '../components/SubmitMemory'
 
 const createScreen = () => {
     return (
-        <div>
+        <>
 
-            <h2>ahahha</h2>
+            <Container>
+                <SubmitMemory/>
+            </Container>
             
-        </div>
+        </>
     )
 }
 

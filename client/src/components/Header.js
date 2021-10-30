@@ -11,8 +11,8 @@ const Header = () => {
         <header>
             <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
 
-                <LinkContainer to='/'>
-                    <Navbar.Brand href="#home" className='justify-content-start'>HistoryAgenda</Navbar.Brand>
+                <LinkContainer to='/'   className='mx-5'>
+                    <Navbar.Brand href="#home" className='justify-content-start' >HistoryAgenda</Navbar.Brand>
                 </LinkContainer>
 
                 <Navbar.Toggle aria-controls='basic-navbar-nav' />
