@@ -15,7 +15,7 @@ function App() {
     <Router>
       <Header/>
       <Container>
-      <Route path="/" component={homeScreen} exact="true"/>
+      <Route exact={true} path="/" component={homeScreen} />
       <Route path="/create" component={createScreen} />
       </Container>  
 

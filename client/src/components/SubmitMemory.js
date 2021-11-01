@@ -1,54 +1,87 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactFileBase64 from 'react-file-base64'
-import { Button, Form} from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
+
+import * as api from '../axios/index.js'
 
 
 const SubmitMemory = () => {
-    return <> 
-            <Form onSubmit={{}} >
-                <Form.Group>
-                    <h1 className="my-4" style={{textAlign: 'center'}}> Create a  Memory</h1>
-                </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Title</Form.Label>  
-                    <Form.Control
+    const [memoryData, setMemoryData] = useState({
+        title: '',
+        content: '',
+        creator: '',
+        image: '',
+
+    })
+    return (<>
+        <Form onSubmit={(e) => { 
+            e.preventDefault()
+            api.createMemory(memoryData)
+        }    
+        }
+        ><Form.Group>
+                <h1 className="my-4" style={{ textAlign: 'center' }}> Create a  Memory</h1>
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Label>Title</Form.Label>
+                <Form.Control
                     name="title"
-                    type="text"></Form.Control>                             
-                </Form.Group>
+                    type="text"
+                    onChange={(e) => 
+                        setMemoryData({ ...memoryData, title: e.target.value })
+                    
+                    }
+                ></Form.Control>
+            </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Author</Form.Label>  
-                    <Form.Control
-                    name="author"
-                    type="text"></Form.Control>                             
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Label>Content</Form.Label>  
-                    <Form.Control
+            <Form.Group>
+                <Form.Label>Content</Form.Label>
+                <Form.Control
                     name="content"
                     type="text"
                     as="textarea"
-                    rows={5}></Form.Control>                             
-                </Form.Group>
-
-                <Form.Group  className="mt-3">
-                    <ReactFileBase64
+                    rows={5}
+                    onChange={(e) => 
+                        setMemoryData({ ...memoryData, content: e.target.value })
                     
+                    }
+                ></Form.Control>
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Label>Author</Form.Label>
+                <Form.Control
+                    name="creator"
+                    type="text"
+                    onChange={(e) => 
+                        setMemoryData({ ...memoryData, creator: e.target.value })
+                    
+                    }
+                ></Form.Control>
+            </Form.Group>
+
+
+
+            <Form.Group className="mt-3">
+                <ReactFileBase64
+
                     type='file'
-                    multiple={true}
-                    onDone={() => {}}
-                    />
+                    multiple={false}
+                    onDone={({ base64 }) => {
+                        setMemoryData({ ...memoryData, image: base64 })
+                        }
+                    }
+                />
+            </Form.Group >
 
+            <Button type="submit" className="mt-2" style={{ width: '100%' }}>Submit</Button>
 
-                </Form.Group >
+        </Form>
 
-                <Button type="submit"  className="mt-2"  style={{width: '100%'}}>Submit</Button>
-
-            </Form>
-    
     </>
+    )
 }
 
 export default SubmitMemory
