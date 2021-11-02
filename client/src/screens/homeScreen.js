@@ -33,12 +33,12 @@ const HomeScreen = () => {
                 <Spinner animation='border' /> 
             )  : ( 
 
-                <Row>
+                <Row >
                     {memories.map((memory) => (
                         <Col 
                             sm={12}
                             md={6}
-                            lg={4}
+                            lg={3}
                             xl={4}
                             className='m-auto'
                             key={memory._id}
