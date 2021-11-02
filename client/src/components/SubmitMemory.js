@@ -37,6 +37,18 @@ const SubmitMemory = () => {
             </Form.Group>
 
             <Form.Group>
+                <Form.Label>Author</Form.Label>
+                <Form.Control
+                    name="creator"
+                    type="text"
+                    onChange={(e) => 
+                        setMemoryData({ ...memoryData, creator: e.target.value })
+                    
+                    }
+                ></Form.Control>
+            </Form.Group>
+
+            <Form.Group>
                 <Form.Label>Content</Form.Label>
                 <Form.Control
                     name="content"
@@ -50,17 +62,7 @@ const SubmitMemory = () => {
                 ></Form.Control>
             </Form.Group>
 
-            <Form.Group>
-                <Form.Label>Author</Form.Label>
-                <Form.Control
-                    name="creator"
-                    type="text"
-                    onChange={(e) => 
-                        setMemoryData({ ...memoryData, creator: e.target.value })
-                    
-                    }
-                ></Form.Control>
-            </Form.Group>
+            
 
 
 
