@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import ReactFileBase64 from 'react-file-base64'
 import { Button, Form } from 'react-bootstrap'
 
-import * as api from '../axios/index.js'
+
 
 import {useHistory} from 'react-router-dom'
 
+import {updateMemory, fetchMemory} from '../axios/index.js'
 
-const SubmitMemory = () => {
+
+const UpdateMemory = ({id}) => {
 
     const [memoryData, setMemoryData] = useState({
         title: '',
@@ -19,17 +21,26 @@ const SubmitMemory = () => {
 
     })
 
+    useEffect(()=>{
+        const getMemo = async () =>{
+            const { data } =  await fetchMemory(id)
+            setMemoryData(data)
+           
+        }
+        getMemo()
+    }, [id])
+
     const history = useHistory()
     return (<>
         <Form onSubmit={(e) => { 
             e.preventDefault()
-            api.createMemory(memoryData)
-
+            updateMemory(id,memoryData)
             history.push('/')
+           
         }    
         }
         ><Form.Group>
-                <h1 className="my-4" style={{ textAlign: 'center' }}> Create a  Memory</h1>
+                <h1 className="my-4" style={{ textAlign: 'center' }}> Update the memory</h1>
             </Form.Group>
 
             <Form.Group>
@@ -41,6 +52,7 @@ const SubmitMemory = () => {
                         setMemoryData({ ...memoryData, title: e.target.value })
                     
                     }
+                    value={memoryData.title}
                 ></Form.Control>
             </Form.Group>
 
@@ -53,6 +65,7 @@ const SubmitMemory = () => {
                         setMemoryData({ ...memoryData, creator: e.target.value })
                     
                     }
+                    value={memoryData.creator}
                 ></Form.Control>
             </Form.Group>
 
@@ -67,6 +80,7 @@ const SubmitMemory = () => {
                         setMemoryData({ ...memoryData, content: e.target.value })
                     
                     }
+                    value={memoryData.content}
                 ></Form.Control>
             </Form.Group>
 
@@ -80,9 +94,9 @@ const SubmitMemory = () => {
                     type='file'
                     multiple={false}
                     onDone={({ base64 }) => {
-                        setMemoryData({ ...memoryData, image: base64 })
-                        }
-                    }
+                        setMemoryData({ ...memoryData, image: base64 })                        
+                    }}
+                    value={memoryData.image}
                 />
             </Form.Group >
 
@@ -94,4 +108,4 @@ const SubmitMemory = () => {
     )
 }
 
-export default SubmitMemory
+export default UpdateMemory

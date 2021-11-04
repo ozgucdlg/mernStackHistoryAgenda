@@ -68,13 +68,13 @@ router.put('/:id', async(req,res) =>{
 
 router.delete('/:id', async (req,res) =>{
     try {
-        const {id} = req.params
-        if(!mongoose.Types.ObjectId.isValid(id)){
+        const { id } = req.params
+        if(!mongoose.Types.ObjectId.isValid(id))
             res.status(404).json({message:'memory id is not valid'})
 
         await Memory.findByIdAndDelete(id)
-        res.status(200).json({message:'memory has been deleted'})    
-        }        
+
+        res.status(200).json({message:'memory has been deleted'})                  
     } catch (error) {
         console.log(error.message)
         res.json({message:'memory delete fail'})
