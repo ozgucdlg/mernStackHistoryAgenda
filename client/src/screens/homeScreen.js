@@ -1,27 +1,24 @@
-import React, { useState, useEffect  }  from 'react'
-
-import { Spinner, Row, Col} from 'react-bootstrap'
-import { fetchMemories } from '../axios/index.js'
+import React, {  useState, useEffect  }  from 'react'
 
 import Memory from '../components/Memory.js'
+
+import { useDispatch, useSelector} from 'react-redux'
+import { fetchMemories } from '../actions/memoryActions.js'
+
+
+import { Spinner, Row, Col} from 'react-bootstrap'
+
+
+
 
 
 
 const HomeScreen = () => {
-
-    const [memories, setMemories] = useState([])
- 
+    const dispatch = useDispatch() 
     useEffect(() =>{
-        const getMemories = async () => {
-        
-         const { data} = await fetchMemories()
-         console.log(data)
-            setMemories(data)
-    }
-    getMemories()
-
-
-    }, [])
+     dispatch(fetchMemories())
+    },[dispatch ])
+    const memories = useSelector((state) => state.memories)   
      
     return (        
         <>
@@ -60,5 +57,4 @@ const HomeScreen = () => {
         </>        
     )
 }
-
 export default HomeScreen
