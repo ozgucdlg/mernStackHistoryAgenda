@@ -12,11 +12,8 @@ const UpdateScreen = () => {
     return (
         <>
 <Container>
-    <UpdateMemory  id={id} />
-
-    
-</Container>
-            
+    <UpdateMemory  id={id} />    
+</Container>            
         </>
     )
 }

@@ -23,7 +23,7 @@ router.get('/', async (req,res)=>{
 
 // GET SINGLE ID FROM DATABASE
 router.get('/:id', async(req,res) =>{
-    try {
+    try { 
         const {id} = req.params
         if(!mongoose.Types.ObjectId.isValid(id)){
             res.status(404).json({message:'Memory is not valid'})

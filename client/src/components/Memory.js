@@ -31,7 +31,10 @@ const Memory = ({ memory }) => {
                     <Card.Subtitle>{moment(moment.createdAt).fromNow()}
                     </Card.Subtitle>
 
-                    <Button  style={{ width: '100%', background:'white', color:'#bd301c' }}>Go to memory
+                    <Button 
+                    className='rounded mt-3' 
+                    style={{ width: '100%', background:'white',border:'3px solid orange', color:'orange' }}>
+                    Go to memory
                     </Button>
 
                 </Card.Body>
