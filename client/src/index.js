@@ -14,18 +14,24 @@ import thunk from 'redux-thunk';
 
 import './bootstrap.min.css'
 
+// 3. in reducers
 import memoriesReducer from './reducers/memoriesReducer.js'
 
+
+// 4. in reducers
 const reducer =  combineReducers({
   memories:memoriesReducer
 })
 
+
+//5. in reducers
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 
 
 
 ReactDOM.render(
   <React.StrictMode>
+    //* 6 in reducers 
     <Provider  store={store}>
       <App />
     </Provider>
