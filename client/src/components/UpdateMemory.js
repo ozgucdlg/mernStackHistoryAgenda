@@ -5,11 +5,14 @@ import { Button, Form } from 'react-bootstrap'
 
 
 import {useHistory} from 'react-router-dom'
+import {updateMemory} from '../actions/memoryActions'
+import {useDispatch} from 'react-redux'
 
 import {updateMemory, fetchMemory} from '../axios/index.js'
 
 
 const UpdateMemory = ({id}) => {
+    const dispatch =  useDispatch()
 
     const [memoryData, setMemoryData] = useState({
         title: '',
@@ -34,7 +37,7 @@ const UpdateMemory = ({id}) => {
     return (<>
         <Form onSubmit={(e) => { 
             e.preventDefault()
-            updateMemory(id,memoryData)
+            dispatch(updateMemory(memory(id,memoryData)))
             history.push('/')
            
         }    

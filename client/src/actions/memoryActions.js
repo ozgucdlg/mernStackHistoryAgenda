@@ -35,4 +35,15 @@ export const deleteMmeory = (id)=> async (dispatch) =>{
     }
 }
 
+export const updateMemory = (id, updatedMemory) =>async (dispatch)=>{
+try {
+    const {data} =await api.updatedMemory(id,updatedMemory)
+    dispatch({type:UPDATE, payload :data})
+} catch (error) {
+    console.log(error);
+    
+}
+
+}
+
 
