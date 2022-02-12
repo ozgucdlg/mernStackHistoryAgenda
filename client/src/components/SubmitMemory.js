@@ -29,7 +29,7 @@ const SubmitMemory = () => {
     return (<>
         <Form onSubmit={(e) => { 
             e.preventDefault()
-            api.createMemory(memoryData)
+            dispatch(createMemory(memoryData)) 
 
             history.push('/')
         }    
