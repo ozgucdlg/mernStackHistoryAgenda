@@ -11,8 +11,8 @@ export const fetchMemory = async (id) => API.get(`/memories/${id}`)
 
 export const createMemory = async (newMemory) =>{
    
-   const { data } = await API.post('/memories', newMemory )
-   console.log(data)
+   return await API.post('/memories', newMemory )
+  
 }
 
 

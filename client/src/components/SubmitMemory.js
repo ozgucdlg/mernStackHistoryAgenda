@@ -6,6 +6,9 @@ import * as api from '../axios/index.js'
 
 import {useHistory} from 'react-router-dom'
 
+import {useDispatch} from 'react-redux'
+import {createMemory} from '../actions/memoryActions'
+
 
 const SubmitMemory = () => {
 
@@ -20,6 +23,9 @@ const SubmitMemory = () => {
     })
 
     const history = useHistory()
+    const dispatch=useDispatch()
+
+
     return (<>
         <Form onSubmit={(e) => { 
             e.preventDefault()
