@@ -23,4 +23,16 @@ export const createMemory = (memory) => async dispatch => {
     }
 }
 
+export const deleteMmeory = (id)=> async (dispatch) =>{
+
+    try {
+        await api.deleteMemory(id)
+        dispatch({ type:DELETE, payload: id})
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
 

@@ -6,9 +6,13 @@ import {LinkContainer} from 'react-router-bootstrap'
 
 import { MdModeEdit,MdDelete } from 'react-icons/md'
 
-import { deleteMemory } from '../axios/index.js'
+import {useDispatch} from 'react-redux'
+
+import { deleteMemory } from '../actions/memoryActions'
 
 const Memory = ({ memory }) => {
+
+    const dispatch = useDispatch();
     return (
         <>
 
@@ -53,8 +57,10 @@ const Memory = ({ memory }) => {
                     size={25} 
                     color='red' 
                     style={{cursor: 'pointer'}}  
-                    onClick={() => 
-                        deleteMemory(memory._id)                  
+                    onClick={() => {
+                        dispatch(deleteMemory(memory._id))
+                    }
+                                       
                     
                     }              
                 
