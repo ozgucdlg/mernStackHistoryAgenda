@@ -4,6 +4,10 @@ import { Navbar, Nav, Button } from 'react-bootstrap'
 
 import { LinkContainer } from 'react-router-bootstrap'
 
+import {FcEditImage} from 'react-icons/fc'
+
+import {AiOutLineLogin} from 'react-icons/AiOutLineLogin'
+
 
 
 const Header = () => {
@@ -21,7 +25,15 @@ const Header = () => {
                 <Nav>
                     <LinkContainer to='/create'>
                         <Nav.Link>
-                            <Button variant="outline-warning" className='justify-content-end'>Create History</Button>
+                            <Button variant="outline-warning" className='justify-content-end'>
+                                <FcEditImage className='mr-2' size={20}/>Create History</Button>
+                        </Nav.Link>
+                    </LinkContainer>
+
+                    <LinkContainer to='/Auth'>
+                        <Nav.Link>
+                            <Button variant="outline-light" className='justify-content-end'>
+                                <AiOutLineLogin size={20} className='mr-2'/>Sign In</Button>
                         </Nav.Link>
                     </LinkContainer>
 

@@ -19,6 +19,7 @@ function App() {
       <Route exact={true} path="/" component={HomeScreen} />
       <Route path="/create" component={createScreen} />
       <Route path="/update/:id" component={UpdateScreen} />
+      <Route path="/auth" component={AuthScreen} />
       </Container>  
 
       <Footer /> 

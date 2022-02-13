@@ -1,6 +1,6 @@
 import { FETCH_ALL,DELETE,CREATE,UPDATE } from '../constants/actionsConstants.js';
 
-import * as api from  '../axios'
+import * as api from  '../axios/index'
 
 export const fetchMemories = () => async (dispatch) => {
     try {

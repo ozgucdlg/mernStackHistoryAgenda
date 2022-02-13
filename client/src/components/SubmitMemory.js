@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ReactFileBase64 from 'react-file-base64'
 import { Button, Form } from 'react-bootstrap'
 
-import * as api from '../axios/index.js'
+import * as api from '../axios'
 
 import {useHistory} from 'react-router-dom'
 
