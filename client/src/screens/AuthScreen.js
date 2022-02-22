@@ -13,7 +13,7 @@ const AuthScreen = () => {
         <Row className="justify-conetent-center">
             <Col xs={12} md={6} >
             {
-            login  ? 
+            login  ? (
             
             <Form className="allign-content-center mt-3">
                 <h1  className="text-center mb-3">SIGN IN PLEASE</h1>
@@ -45,8 +45,14 @@ const AuthScreen = () => {
             </Form>
             
             
-            
-            : <h1>LOG IN PLRASE</h1>
+            )
+            :
+            (
+                <Form class>
+            <h1>LOG IN PLRASE</h1>
+
+            </Form>
+            )
             }
             </Col>
         </Row>
