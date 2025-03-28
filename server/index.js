@@ -2,27 +2,35 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-
 import memoryRouter from './routers/memoryRouters.js'
-
-
+import userRouter from './routers/userRouters.js'
 
 dotenv.config()
 const app = express(); 
 
-
-
-app.use(express.json({limit:'20mb'}))
+// Middleware
 app.use(cors())
+app.use(express.json({limit:'20mb'}))
 
-app.use('/memories', memoryRouter); 
+// Routes
+app.use('/memories', memoryRouter)
+app.use('/user', userRouter)
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Error:', err);
+    res.status(500).json({ message: err.message || 'Something went wrong!' });
+});
 
-app.listen(process.env.PORT, () => {
-    mongoose.connect(process.env.MONGODB_URI,  {
-        useNewUrlParser:true,
-        useUnifiedTopology:true,        
-    })
-    .then(() => console.log('database connection is successfully established'))
-    .catch((err) => console.error(err))
-})
+const PORT = process.env.PORT || 5000;
+
+try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log('Connected to MongoDB successfully');
+    
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+} catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
+}

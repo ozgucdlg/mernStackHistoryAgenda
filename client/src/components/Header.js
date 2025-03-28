@@ -1,49 +1,55 @@
-import React from 'react'
-
-import { Navbar, Nav, Button } from 'react-bootstrap'
-
+import React, { useState, useEffect } from 'react'
+import { Navbar, Nav, Container, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 import {FcEditImage} from 'react-icons/fc'
 
-import {AiOutLineLogin} from 'react-icons/AiOutLineLogin'
-
-
+import {AiOutlineLogin} from 'react-icons/ai'
 
 const Header = () => {
+    const [user, setUser] = useState(null)
+    const history = useHistory()
+
+    useEffect(() => {
+        const profile = localStorage.getItem('profile')
+        if (profile) {
+            setUser(JSON.parse(profile))
+        }
+    }, [])
+
+    const logout = () => {
+        localStorage.removeItem('profile')
+        setUser(null)
+        history.push('/')
+    }
+
     return (
-        <header>
-            <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
-
-                <LinkContainer to='/'   className='mx-5'>
-                    <Navbar.Brand href="#home" className='justify-content-start' >HistoryAgenda</Navbar.Brand>
+        <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+            <Container>
+                <LinkContainer to="/">
+                    <Navbar.Brand>History Agenda</Navbar.Brand>
                 </LinkContainer>
-
-                <Navbar.Toggle aria-controls='basic-navbar-nav' />
-                <Navbar.Collapse id='basic-navbar-nav' className='justify-content-end' />
-
-                <Nav>
-                    <LinkContainer to='/create'>
-                        <Nav.Link>
-                            <Button variant="outline-warning" className='justify-content-end'>
-                                <FcEditImage className='mr-2' size={20}/>Create History</Button>
-                        </Nav.Link>
-                    </LinkContainer>
-
-                    <LinkContainer to='/Auth'>
-                        <Nav.Link>
-                            <Button variant="outline-light" className='justify-content-end'>
-                                <AiOutLineLogin size={20} className='mr-2'/>Sign In</Button>
-                        </Nav.Link>
-                    </LinkContainer>
-
-                </Nav>
-
-            </Navbar>
-
-        </header>
-    );
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ms-auto">
+                        {user ? (
+                            <>
+                                <LinkContainer to="/profile">
+                                    <Nav.Link>Welcome, {user.result.firstName}!</Nav.Link>
+                                </LinkContainer>
+                                <Button variant="outline-light" onClick={logout}>Logout</Button>
+                            </>
+                        ) : (
+                            <LinkContainer to="/auth">
+                                <Nav.Link>Sign In</Nav.Link>
+                            </LinkContainer>
+                        )}
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    )
 }
-
 
 export default Header

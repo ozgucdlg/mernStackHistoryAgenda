@@ -1,15 +1,10 @@
 import React, { useEffect,useState } from 'react'
 import ReactFileBase64 from 'react-file-base64'
 import { Button, Form } from 'react-bootstrap'
-
-
-
 import {useHistory} from 'react-router-dom'
-import {updateMemory} from '../actions/memoryActions'
 import {useDispatch} from 'react-redux'
-
-import {updateMemory, fetchMemory} from '../axios/index.js'
-
+import {updateMemory} from '../actions/memoryActions'
+import {fetchMemory} from '../axios/index.js'
 
 const UpdateMemory = ({id}) => {
     const dispatch =  useDispatch()
@@ -19,16 +14,12 @@ const UpdateMemory = ({id}) => {
         content: '',
         creator: '',
         image: '',
-
-        
-
     })
 
     useEffect(()=>{
         const getMemo = async () =>{
             const { data } =  await fetchMemory(id)
             setMemoryData(data)
-           
         }
         getMemo()
     }, [id])
@@ -37,11 +28,9 @@ const UpdateMemory = ({id}) => {
     return (<>
         <Form onSubmit={(e) => { 
             e.preventDefault()
-            dispatch(updateMemory(memory(id,memoryData)))
+            dispatch(updateMemory(id, memoryData))
             history.push('/')
-           
-        }    
-        }
+        }}
         ><Form.Group>
                 <h1 className="my-4" style={{ textAlign: 'center' }}> Update the memory</h1>
             </Form.Group>
@@ -87,13 +76,8 @@ const UpdateMemory = ({id}) => {
                 ></Form.Control>
             </Form.Group>
 
-            
-
-
-
             <Form.Group className="mt-3">
                 <ReactFileBase64
-
                     type='file'
                     multiple={false}
                     onDone={({ base64 }) => {

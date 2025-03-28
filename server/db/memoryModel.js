@@ -1,30 +1,27 @@
 import mongoose from 'mongoose'
 
-
 const memoSchema = mongoose.Schema({ 
-    title:{
-        type: 'string',
+    title: {
+        type: String,
         required: true,
     },
     content: {
-        type: 'string',
+        type: String,
         required: true,
     },
     creator: {
-        type: 'string',
+        type: String,
         required: true,
     },
     image: {
-        type: 'string',
-        multiple: true,
-        
-    },
-    createdAt: {
-        type: Date,
-        default: new Date()
-    }    
+        type: String,
+        required: false
+    }
+}, {
+    timestamps: true,
+    collection: 'memos'  // Use the existing collection name
 }) 
 
-const Memory = mongoose.model('memo', memoSchema)
+const Memory = mongoose.model('Memory', memoSchema)
 
 export default Memory

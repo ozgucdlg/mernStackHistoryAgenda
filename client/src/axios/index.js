@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:3000' })
+const API = axios.create({ baseURL: 'http://localhost:5000' })
 
 
 export const fetchMemories = async () => API.get('/memories')
@@ -17,7 +17,7 @@ export const createMemory = async (newMemory) =>{
 
 
 export const updateMemory = async (id, updatedMemory) => {
-   await API.put(`/memories/${id}`,updatedMemory)
+   return await API.put(`/memories/${id}`, updatedMemory)
 }
 
 export const deleteMemory = async (id) =>  await API.delete(`/memories/${id}`)

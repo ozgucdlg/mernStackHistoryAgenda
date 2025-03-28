@@ -1,40 +1,24 @@
-import React, {  useState, useEffect  }  from 'react'
-
+import React, { useEffect } from 'react'
 import Memory from '../components/Memory.js'
-
 import { useDispatch, useSelector} from 'react-redux'
 import { fetchMemories } from '../actions/memoryActions.js'
-
-
 import { Spinner, Row, Col} from 'react-bootstrap'
-
-
-
-
-
 
 const HomeScreen = () => {
     const dispatch = useDispatch()
     const memories = useSelector((state) => state.memories) 
-    useEffect(() =>{
-        if(!memories[0]){
+
+    useEffect(() => {
         dispatch(fetchMemories())
-        }
-    
-    },[dispatch ])
-    const memories = useSelector((state) => state.memories)   
+    }, [dispatch])
      
     return (        
         <>
-            <h2  >  WELCOME TO THE HOMSESCREEN </h2>
-            
-
-            {
-                !memories.length ?  (
+            <h2>WELCOME TO THE HOMESCREEN</h2>
+            {!memories.length ? (
                 <Spinner animation='border' /> 
-            )  : ( 
-
-                <Row >
+            ) : ( 
+                <Row>
                     {memories.map((memory) => (
                         <Col 
                             sm={12}
@@ -44,21 +28,13 @@ const HomeScreen = () => {
                             className='m-auto'
                             key={memory._id}
                         >
-                              <Memory memory={memory} />
-
+                            <Memory memory={memory} />
                         </Col> 
-                        )                 
-                    )
-                    
-                    }                   
+                    ))}                   
                 </Row>            
-            )
-            
-            }
-             
-            
-                        
+            )}
         </>        
     )
 }
+
 export default HomeScreen
